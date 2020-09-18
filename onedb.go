@@ -4,6 +4,7 @@ import (
 	"io"
 	"net"
 	"reflect"
+	"strings"
 	"time"
 
 	"github.com/pkg/errors"
@@ -84,6 +85,14 @@ func IsSlice(item reflect.Type) bool {
 // IsStruct is used to determine if a reflect.Type is a struct
 func IsStruct(item reflect.Type) bool {
 	return item.Kind() == reflect.Struct
+}
+
+// LowerSlice returns a lowercased copy of a []string
+func LowerSlice(s []string) []string {
+	for i := range s {
+		s[i] = strings.ToLower(s[i])
+	}
+	return s
 }
 
 // QueryWriteCSV runs a query against the provided Backender and saves the response to the specified file in CSV format

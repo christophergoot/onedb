@@ -96,7 +96,7 @@ func (b *pgxWithReconnect) Close() {
 }
 
 func (b *pgxWithReconnect) CopyFrom(tableName Identifier, columnNames []string, rows CopyFromSource) (int, error) {
-	return b.db.CopyFrom(pgx.Identifier(tableName), columnNames, rows)
+	return b.db.CopyFrom(pgx.Identifier(onedb.LowerSlice(tableName)), onedb.LowerSlice(columnNames), rows)
 }
 
 func (b *pgxWithReconnect) QueryRow(query string, args ...interface{}) onedb.Scanner {
